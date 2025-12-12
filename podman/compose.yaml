@@ -1,0 +1,35 @@
+services:
+  terrarium:
+    image: terrarium:latest
+    container_name: terrarium_dev
+    environment:
+      - DISPLAY=${DISPLAY}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
+      - XAUTHORITY=${XAUTHORITY}
+      - QT_X11_NO_MITSHM=1
+      - DEBIAN_FRONTEND=noninteractive
+      - ROS_DOMAIN_ID=0
+    volumes:
+      - /home/${USER}/ros/terrarium:/terrarium:Z
+      - terrarium_home:/root
+      # Add X11 socket
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      # Add Wayland socket
+      - ${XDG_RUNTIME_DIR}/${WAYLAND_DISPLAY}:${XDG_RUNTIME_DIR}/${WAYLAND_DISPLAY}
+      - ${XDG_RUNTIME_DIR}:${XDG_RUNTIME_DIR}
+      # Add device access for GPU
+      - /dev/dri:/dev/dri
+    shm_size: '2gb'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    privileged: true
+    network_mode: host
+    ipc: host
+    pids_limit: -1
+    command: sleep infinity
+
+volumes:
+  terrarium_home:
