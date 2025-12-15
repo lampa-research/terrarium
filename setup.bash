@@ -18,13 +18,13 @@ export ROS_DOMAIN_ID=0
 # Add or modify robot entries as needed
 robot_0=""
 robot_1=""
-robot_2=""
-robot_3="192.168.1.161:11811"
+robot_2="192.168.1.132:11811" #D8:3A:DD:08:5F:36
+robot_3="192.168.1.163:11811" #D8:3A:DD:08:54:AA
 robot_4=""
-robot_5="192.168.1.132:11811"
+robot_5="192.168.1.131:11811" #D8:3A:DD:08:54:F2
 robot_6=""
-robot_7=""
-robot_8=""
+robot_7="192.168.1.184:11811" #D8:3A:DD:08:54:BF
+robot_8="192.168.1.186:11811" #D8:3A:DD:08:54:C5
 robot_9=""
 
 # Build ROS_DISCOVERY_SERVER list (filters out empty entries)
