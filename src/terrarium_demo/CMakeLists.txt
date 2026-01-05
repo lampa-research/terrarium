@@ -10,16 +10,23 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
-# Add executable
+# Add executables
 add_executable(turtle_controller_template src/turtle_controller_template.cpp)
 ament_target_dependencies(turtle_controller_template
   rclcpp
   geometry_msgs
 )
 
-# Install executable
+add_executable(goto_pose_node src/goto_pose_node.cpp)
+ament_target_dependencies(goto_pose_node
+  rclcpp
+  geometry_msgs
+)
+
+# Install executables
 install(TARGETS
   turtle_controller_template
+  goto_pose_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
