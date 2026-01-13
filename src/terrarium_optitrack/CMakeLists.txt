@@ -9,7 +9,10 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 find_package(mocap4r2_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 
 # Add executable
 add_executable(optitrack_pose_publisher_node src/optitrack_pose_publisher_node.cpp)
@@ -19,9 +22,21 @@ ament_target_dependencies(optitrack_pose_publisher_node
   mocap4r2_msgs
 )
 
-# Install executable
+# SLAM bridge node
+add_executable(optitrack_slam_bridge_node src/optitrack_slam_bridge_node.cpp)
+ament_target_dependencies(optitrack_slam_bridge_node
+  rclcpp
+  geometry_msgs
+  nav_msgs
+  mocap4r2_msgs
+  tf2
+  tf2_ros
+)
+
+# Install executables
 install(TARGETS
   optitrack_pose_publisher_node
+  optitrack_slam_bridge_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
